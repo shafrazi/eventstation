@@ -11,7 +11,7 @@
   <body>
     <% if params[:controller] == "static_pages" || params[:controller] == "devise/registrations" || params[:controller] == "devise/sessions" %>
       <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-        <h5 class="my-0 mr-md-auto font-weight-normal">eventstation</h5>
+        <h5 class="my-0 mr-md-auto font-weight-normal"><%= link_to 'eventstation', root_path %></h5>
         <nav class="my-2 my-md-0 mr-md-3">
           <a class="p-2 text-dark" href="#">Features</a>
           <a class="p-2 text-dark" href="#">Enterprise</a>
@@ -29,6 +29,15 @@
       </div>
     <% end %>
     <div class="container">
+      <% flash.each do |message_type, message| %>
+        <!-- <div class="alert alert-<%= message_type %>"><%= message %></div> -->
+        <% if message_type == "notice" %>
+          <% alert_type = "primary" %>
+        <% else %>
+          <% alert_type = message_type %>
+        <% end %>
+        <%= content_tag :div, message, class: "alert alert-#{alert_type}" %>
+      <% end %>
       <%= yield %>
     </div>
   </body>
