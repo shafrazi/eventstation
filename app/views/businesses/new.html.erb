@@ -1,2 +1,28 @@
-<h1>Businesses#new</h1>
-<p>Find me in app/views/businesses/new.html.erb</p>
+<h1>Add Business</h1>
+<%= form_with(model: @business, local: true) do |f| %>
+  <div class="field form-group">
+    <%= f.label :category_id, "Business category : " %>
+    <%= f.collection_select(:category_id, Category.all, :id, :name, class: "form-control") %>
+  </div>
+  <div class="field form-group">
+    <%= f.label :name, "Business name : " %>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+  <div class="field form-group">
+    <%= f.label :description, "Description : " %>
+    <%= f.text_area :description, class: "form-control" %>
+  </div>
+  <div class="field form-group">
+    <%= f.label :address, "Address : " %>
+    <%= f.text_field :address, class: "form-control" %>
+  </div>
+  <div class="field form-group">
+    <%= f.label :contact_no, "Contact no : " %>
+    <%= f.text_field :contact_no, class: "form-control" %>
+  </div>
+  <div class="field form-group">
+    <%= f.label :website, "Website : " %>
+    <%= f.text_field :website, class: "form-control" %>
+  </div>
+  <%= f.submit class: "btn btn-primary"%>
+<% end %>
