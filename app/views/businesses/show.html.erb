@@ -20,4 +20,10 @@
   <div class="card-body text-dark">
     <p class="card-text"><%= @business.rating %></p>
   </div>
+  <% @business.specifications.each do |key, value| %>
+    <div class="card-header"><%= beautify_field(key) %></div>
+    <div class="card-body text-dark">
+      <p class="card-text"><%= value %></p>
+    </div>
+  <% end %>
 </div>
