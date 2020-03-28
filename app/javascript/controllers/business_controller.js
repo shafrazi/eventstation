@@ -6,7 +6,6 @@ export default class extends Controller {
   static targets = ["spec", "source"]
 
   insert() {
-    console.log(this.sourceTarget.value)
     const category = this.sourceTarget.value
     const url = `/${category.toLowerCase()}_specifications.html`
 

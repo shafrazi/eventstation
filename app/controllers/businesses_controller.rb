@@ -25,6 +25,10 @@ class BusinessesController < ApplicationController
   def edit
   end
 
+  def show
+    @business = Business.find(params[:id])
+  end
+
   private
 
   def business_params
