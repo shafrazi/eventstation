@@ -4,9 +4,11 @@ class BusinessesController < ApplicationController
   end
 
   def create
-    category = Category.find(params[:business][:category_id])
+    category = Category.find_by_name(params[:category_name])
+    category_id = category.id
     type = category.name
     @business = current_user.businesses.build(business_params)
+    @business.category_id = category_id
     @business.type = type
     if @business.save
       flash[:success] = "Business created successfully."
@@ -26,6 +28,6 @@ class BusinessesController < ApplicationController
   private
 
   def business_params
-    params.require(:business).permit(:name, :category_id, :description, :address, :contact_no, :website)
+    params.require(:business).permit(:name, :category_id, :description, :address, :contact_no, :website, specifications: {})
   end
 end

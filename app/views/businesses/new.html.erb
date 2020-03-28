@@ -1,8 +1,8 @@
 <h1>Add Business</h1>
-<%= form_with(model: @business, local: true) do |f| %>
-  <div class="field form-group">
+<%= form_with(model: @business, local: true, data: {controller: "business"}) do |f| %>
+  <div class="field form-group" >
     <%= f.label :category_id, "Business category : " %>
-    <%= f.collection_select(:category_id, Category.all, :id, :name, class: "form-control") %>
+    <%= collection_select("", :category_name, Category.all, :name, :name, {}, {class: "form-control", data: {action: "business#insert", target: "business.source"}}) %>
   </div>
   <div class="field form-group">
     <%= f.label :name, "Business name : " %>
@@ -23,6 +23,12 @@
   <div class="field form-group">
     <%= f.label :website, "Website : " %>
     <%= f.text_field :website, class: "form-control" %>
+  </div>
+  <div data-target="business.spec">
+    <div class="field form-group">
+      <label for="guest_capacity">Guest capacity : </label>
+      <input class="form-control" type="text" name="business[specifications][guest_capacity]" id="guest_capacity">
+    </div>
   </div>
   <%= f.submit class: "btn btn-primary"%>
 <% end %>
