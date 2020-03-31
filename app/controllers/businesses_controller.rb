@@ -20,6 +20,12 @@ class BusinessesController < ApplicationController
   end
 
   def index
+    if params[:search_text]
+      @businesses = Business.where("name ILIKE ?", "%#{params[:search_text]}%")
+    else
+      @businesses = Business.all
+    end
+    render layout: "business_index"
   end
 
   def edit
